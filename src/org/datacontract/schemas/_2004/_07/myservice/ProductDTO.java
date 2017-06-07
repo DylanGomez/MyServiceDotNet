@@ -21,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="Name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="Price" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *         &lt;element name="Stock" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,7 +33,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ProductDTO", propOrder = {
     "name",
-    "price"
+    "price",
+    "stock"
 })
 public class ProductDTO {
 
@@ -40,6 +42,8 @@ public class ProductDTO {
     protected JAXBElement<String> name;
     @XmlElement(name = "Price")
     protected Double price;
+    @XmlElement(name = "Stock")
+    protected Integer stock;
 
     /**
      * Gets the value of the name property.
@@ -87,6 +91,30 @@ public class ProductDTO {
      */
     public void setPrice(Double value) {
         this.price = value;
+    }
+
+    /**
+     * Gets the value of the stock property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getStock() {
+        return stock;
+    }
+
+    /**
+     * Sets the value of the stock property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setStock(Integer value) {
+        this.stock = value;
     }
 
 }

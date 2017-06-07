@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
-import org.datacontract.schemas._2004._07.myservice.CustomerDTO;
 
 
 /**
@@ -20,7 +19,7 @@ import org.datacontract.schemas._2004._07.myservice.CustomerDTO;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="InsertCustomerResult" type="{http://schemas.datacontract.org/2004/07/myService}CustomerDTO" minOccurs="0"/>
+ *         &lt;element name="InsertCustomerResult" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,17 +36,17 @@ import org.datacontract.schemas._2004._07.myservice.CustomerDTO;
 public class InsertCustomerResponse {
 
     @XmlElementRef(name = "InsertCustomerResult", namespace = "http://tempuri.org/", type = JAXBElement.class, required = false)
-    protected JAXBElement<CustomerDTO> insertCustomerResult;
+    protected JAXBElement<String> insertCustomerResult;
 
     /**
      * Gets the value of the insertCustomerResult property.
      * 
      * @return
      *     possible object is
-     *     {@link JAXBElement }{@code <}{@link CustomerDTO }{@code >}
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
      *     
      */
-    public JAXBElement<CustomerDTO> getInsertCustomerResult() {
+    public JAXBElement<String> getInsertCustomerResult() {
         return insertCustomerResult;
     }
 
@@ -56,10 +55,10 @@ public class InsertCustomerResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link JAXBElement }{@code <}{@link CustomerDTO }{@code >}
+     *     {@link JAXBElement }{@code <}{@link String }{@code >}
      *     
      */
-    public void setInsertCustomerResult(JAXBElement<CustomerDTO> value) {
+    public void setInsertCustomerResult(JAXBElement<String> value) {
         this.insertCustomerResult = value;
     }
 

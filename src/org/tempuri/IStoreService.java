@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 import org.datacontract.schemas._2004._07.myservice.ArrayOfProductDTO;
-import org.datacontract.schemas._2004._07.myservice.CustomerDTO;
 
 
 /**
@@ -20,7 +19,7 @@ import org.datacontract.schemas._2004._07.myservice.CustomerDTO;
  */
 @WebService(name = "IStoreService", targetNamespace = "http://tempuri.org/")
 @XmlSeeAlso({
-    com.microsoft.schemas._2003._10.serialization.ObjectFactory.class,
+    com.microsoft.schemas._2003._10.com.microsoft.schemas._2003._10.serialization.ObjectFactory.class,
     org.datacontract.schemas._2004._07.myservice.ObjectFactory.class,
     org.tempuri.ObjectFactory.class
 })
@@ -48,13 +47,13 @@ public interface IStoreService {
      * 
      * @param value
      * @return
-     *     returns org.datacontract.schemas._2004._07.myservice.CustomerDTO
+     *     returns java.lang.String
      */
     @WebMethod(operationName = "InsertCustomer", action = "http://tempuri.org/IStoreService/InsertCustomer")
     @WebResult(name = "InsertCustomerResult", targetNamespace = "http://tempuri.org/")
     @RequestWrapper(localName = "InsertCustomer", targetNamespace = "http://tempuri.org/", className = "org.tempuri.InsertCustomer")
     @ResponseWrapper(localName = "InsertCustomerResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.InsertCustomerResponse")
-    public CustomerDTO insertCustomer(
+    public String insertCustomer(
         @WebParam(name = "value", targetNamespace = "http://tempuri.org/")
         String value);
 
@@ -73,7 +72,7 @@ public interface IStoreService {
      * 
      * @param aantal
      * @param product
-     * @param customerId
+     * @param username
      * @return
      *     returns java.lang.Boolean
      */
@@ -85,13 +84,13 @@ public interface IStoreService {
         @WebParam(name = "aantal", targetNamespace = "http://tempuri.org/")
         Integer aantal,
         @WebParam(name = "product", targetNamespace = "http://tempuri.org/")
-        Integer product,
-        @WebParam(name = "customerId", targetNamespace = "http://tempuri.org/")
-        Integer customerId);
+        String product,
+        @WebParam(name = "username", targetNamespace = "http://tempuri.org/")
+        String username);
 
     /**
      * 
-     * @param customerId
+     * @param username
      * @return
      *     returns org.datacontract.schemas._2004._07.myservice.ArrayOfProductDTO
      */
@@ -100,12 +99,12 @@ public interface IStoreService {
     @RequestWrapper(localName = "GetMyInventory", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetMyInventory")
     @ResponseWrapper(localName = "GetMyInventoryResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetMyInventoryResponse")
     public ArrayOfProductDTO getMyInventory(
-        @WebParam(name = "customerId", targetNamespace = "http://tempuri.org/")
-        Integer customerId);
+        @WebParam(name = "username", targetNamespace = "http://tempuri.org/")
+        String username);
 
     /**
      * 
-     * @param customerId
+     * @param username
      * @return
      *     returns java.lang.Double
      */
@@ -114,7 +113,7 @@ public interface IStoreService {
     @RequestWrapper(localName = "GetSaldo", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetSaldo")
     @ResponseWrapper(localName = "GetSaldoResponse", targetNamespace = "http://tempuri.org/", className = "org.tempuri.GetSaldoResponse")
     public Double getSaldo(
-        @WebParam(name = "customerId", targetNamespace = "http://tempuri.org/")
-        Integer customerId);
+        @WebParam(name = "username", targetNamespace = "http://tempuri.org/")
+        String username);
 
 }

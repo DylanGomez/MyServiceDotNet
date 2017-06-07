@@ -21,7 +21,7 @@ public class OrderController {
             String error = "onvoldoende saldo";
         }
         else if(aantal <= p.getAantal() && c.getSaldo() >= p.getProductPrice())
-            service.buyProduct(aantal, p.getProductID(), c.getCustomerID());
+            service.buyProduct(aantal, p.getProductName(), c.getUsername());
         }
     }
 

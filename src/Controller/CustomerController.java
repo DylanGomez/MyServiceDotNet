@@ -23,26 +23,21 @@ public class CustomerController {
         }
     }
 
-    public boolean registerUser(String username) {
+    public String registerUser(String username) {
         //if username exist
         try {
-            service.insertCustomer(username);
-            String password = setNewPassword();
-            return true;
+            String password = service.insertCustomer(username);
+            return password;
 
         }catch (Exception e){
             String message = "User could not be inserted";
-            return false;
+            return null;
         }
-    }
-
-    public String setNewPassword(){
-        return "lol";
     }
 
     public String getMyProducts(Customer c){
 
-        ArrayOfProductDTO products = service.getMyInventory(c.getCustomerID());
+        ArrayOfProductDTO products = service.getMyInventory(c.getUsername());
 
         if (products.equals(null) || products.equals("")){
             return null;
@@ -52,7 +47,7 @@ public class CustomerController {
     }
 
     public double getMyMoney(Customer c){
-        double money = service.getSaldo(c.getCustomerID());
+        double money = service.getSaldo(c.getUsername());
 
         return money;
     }

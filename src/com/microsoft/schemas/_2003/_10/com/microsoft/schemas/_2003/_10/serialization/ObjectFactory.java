@@ -1,5 +1,5 @@
 
-package com.microsoft.schemas._2003._10.serialization;
+package com.microsoft.schemas._2003._10.com.microsoft.schemas._2003._10.serialization;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;

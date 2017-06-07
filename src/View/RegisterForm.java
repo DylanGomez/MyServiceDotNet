@@ -18,7 +18,7 @@ public class RegisterForm extends JFrame{
     private JTabbedPane LoginRegisterPane;
     private JTextArea Username;
     private JTextField LoginInputField;
-    private JPasswordField passwordField;
+    private JTextField passwordField;
     private JButton loginButton;
     private JTextArea ErrorField;
     private JTextArea WelcomeText;
@@ -40,8 +40,8 @@ public class RegisterForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    c.registerUser(RegisterUsernameField.toString());
-                    NewPasswordField.setText("Your password is: lol");
+                    String pass = c.registerUser(RegisterUsernameField.getText());
+                    NewPasswordField.setText("Your password is: " + pass);
 
                     }catch (Exception exception){
                     NewPasswordField.setText("There was a problem with registering");
@@ -53,7 +53,7 @@ public class RegisterForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    c.loginUser(Username.getText(), passwordField.getText());
+                    c.loginUser(LoginInputField.getText(), passwordField.getText());
                     String message = "Je bent ingelogt";
                     new ProductForm(Username.getText());
 

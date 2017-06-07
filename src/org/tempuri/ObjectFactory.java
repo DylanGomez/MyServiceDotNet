@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlElementDecl;
 import javax.xml.bind.annotation.XmlRegistry;
 import javax.xml.namespace.QName;
 import org.datacontract.schemas._2004._07.myservice.ArrayOfProductDTO;
-import org.datacontract.schemas._2004._07.myservice.CustomerDTO;
 
 
 /**
@@ -26,11 +25,12 @@ import org.datacontract.schemas._2004._07.myservice.CustomerDTO;
 @XmlRegistry
 public class ObjectFactory {
 
+    private final static QName _BuyProductProduct_QNAME = new QName("http://tempuri.org/", "product");
+    private final static QName _BuyProductUsername_QNAME = new QName("http://tempuri.org/", "username");
     private final static QName _LoginUserPassword_QNAME = new QName("http://tempuri.org/", "password");
-    private final static QName _LoginUserUsername_QNAME = new QName("http://tempuri.org/", "username");
-    private final static QName _InsertCustomerValue_QNAME = new QName("http://tempuri.org/", "value");
-    private final static QName _GetAllProductsResponseGetAllProductsResult_QNAME = new QName("http://tempuri.org/", "GetAllProductsResult");
     private final static QName _InsertCustomerResponseInsertCustomerResult_QNAME = new QName("http://tempuri.org/", "InsertCustomerResult");
+    private final static QName _GetAllProductsResponseGetAllProductsResult_QNAME = new QName("http://tempuri.org/", "GetAllProductsResult");
+    private final static QName _InsertCustomerValue_QNAME = new QName("http://tempuri.org/", "value");
     private final static QName _GetMyInventoryResponseGetMyInventoryResult_QNAME = new QName("http://tempuri.org/", "GetMyInventoryResult");
 
     /**
@@ -140,6 +140,24 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "product", scope = BuyProduct.class)
+    public JAXBElement<String> createBuyProductProduct(String value) {
+        return new JAXBElement<String>(_BuyProductProduct_QNAME, String.class, BuyProduct.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "username", scope = BuyProduct.class)
+    public JAXBElement<String> createBuyProductUsername(String value) {
+        return new JAXBElement<String>(_BuyProductUsername_QNAME, String.class, BuyProduct.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
     @XmlElementDecl(namespace = "http://tempuri.org/", name = "password", scope = LoginUser.class)
     public JAXBElement<String> createLoginUserPassword(String value) {
         return new JAXBElement<String>(_LoginUserPassword_QNAME, String.class, LoginUser.class, value);
@@ -151,16 +169,25 @@ public class ObjectFactory {
      */
     @XmlElementDecl(namespace = "http://tempuri.org/", name = "username", scope = LoginUser.class)
     public JAXBElement<String> createLoginUserUsername(String value) {
-        return new JAXBElement<String>(_LoginUserUsername_QNAME, String.class, LoginUser.class, value);
+        return new JAXBElement<String>(_BuyProductUsername_QNAME, String.class, LoginUser.class, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://tempuri.org/", name = "value", scope = InsertCustomer.class)
-    public JAXBElement<String> createInsertCustomerValue(String value) {
-        return new JAXBElement<String>(_InsertCustomerValue_QNAME, String.class, InsertCustomer.class, value);
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "username", scope = GetMyInventory.class)
+    public JAXBElement<String> createGetMyInventoryUsername(String value) {
+        return new JAXBElement<String>(_BuyProductUsername_QNAME, String.class, GetMyInventory.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "InsertCustomerResult", scope = InsertCustomerResponse.class)
+    public JAXBElement<String> createInsertCustomerResponseInsertCustomerResult(String value) {
+        return new JAXBElement<String>(_InsertCustomerResponseInsertCustomerResult_QNAME, String.class, InsertCustomerResponse.class, value);
     }
 
     /**
@@ -173,12 +200,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link CustomerDTO }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://tempuri.org/", name = "InsertCustomerResult", scope = InsertCustomerResponse.class)
-    public JAXBElement<CustomerDTO> createInsertCustomerResponseInsertCustomerResult(CustomerDTO value) {
-        return new JAXBElement<CustomerDTO>(_InsertCustomerResponseInsertCustomerResult_QNAME, CustomerDTO.class, InsertCustomerResponse.class, value);
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "value", scope = InsertCustomer.class)
+    public JAXBElement<String> createInsertCustomerValue(String value) {
+        return new JAXBElement<String>(_InsertCustomerValue_QNAME, String.class, InsertCustomer.class, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link String }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://tempuri.org/", name = "username", scope = GetSaldo.class)
+    public JAXBElement<String> createGetSaldoUsername(String value) {
+        return new JAXBElement<String>(_BuyProductUsername_QNAME, String.class, GetSaldo.class, value);
     }
 
     /**
