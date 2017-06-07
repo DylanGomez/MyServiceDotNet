@@ -16,10 +16,15 @@ public class CustomerController {
 
     public boolean loginUser(String username, String password){
         boolean loggedIn = service.loginUser(username, password);
+
         if (loggedIn){
+
             return true;
+
         } else {
+
             return false;
+
         }
     }
 
@@ -35,19 +40,9 @@ public class CustomerController {
         }
     }
 
-    public String getMyProducts(Customer c){
 
-        ArrayOfProductDTO products = service.getMyInventory(c.getUsername());
-
-        if (products.equals(null) || products.equals("")){
-            return null;
-        }else{
-           return products.toString();
-        }
-    }
-
-    public double getMyMoney(Customer c){
-        double money = service.getSaldo(c.getUsername());
+    public double getMyMoney(String username){
+        double money = service.getSaldo(username);
 
         return money;
     }

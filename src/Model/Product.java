@@ -10,6 +10,11 @@ public class Product {
     private double productPrice;
     private int aantal;
 
+    public Product( String productName, double productPrice, int aantal){
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.aantal = aantal;
+    }
     public int getProductID() {
         return productID;
     }

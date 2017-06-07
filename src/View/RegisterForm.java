@@ -36,13 +36,19 @@ public class RegisterForm extends JFrame{
         this.init();
         this.setSize(600, 400);
         this.setVisible(true);
+
         RegisterButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    String pass = c.registerUser(RegisterUsernameField.getText());
-                    NewPasswordField.setText("Your password is: " + pass);
-
+                    if(RegisterUsernameField.getText().isEmpty())
+                    {
+                        NewPasswordField.setText("Gebruikersnaam mag niet leeg zijn");
+                    }
+                    else {
+                        String pass = c.registerUser(RegisterUsernameField.getText());
+                        NewPasswordField.setText("Your password is: " + pass);
+                    }
                     }catch (Exception exception){
                     NewPasswordField.setText("There was a problem with registering");
                 }
@@ -53,11 +59,14 @@ public class RegisterForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    c.loginUser(LoginInputField.getText(), passwordField.getText());
-                    String message = "Je bent ingelogt";
-                    new ProductForm(Username.getText());
-
-
+                    if(LoginInputField.getText().isEmpty() || passwordField.getText().isEmpty()){
+                        ErrorField.setText("Niet alle velden zijn ingevuld");
+                    }else {
+                        if (c.loginUser(LoginInputField.getText(), passwordField.getText())) {
+                            ErrorField.setText("Je bent ingelogt");
+                            new ProductForm(Username.getText());
+                        }
+                    }
                 } catch (Exception ex) {
                     ErrorField.setVisible(true);
                     ErrorField.setText("Something went wrong, check your information");
