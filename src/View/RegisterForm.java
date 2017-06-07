@@ -64,12 +64,12 @@ public class RegisterForm extends JFrame{
                     }else {
                         if (c.loginUser(LoginInputField.getText(), passwordField.getText())) {
                             ErrorField.setText("Je bent ingelogt");
-                            new ProductForm(Username.getText());
+                            new ProductForm(LoginInputField.getText());
                         }
                     }
                 } catch (Exception ex) {
                     ErrorField.setVisible(true);
-                    ErrorField.setText("Something went wrong, check your information");
+                    ErrorField.setText("Something went wrong, check your information" + ex);
                 }
             }
         });

@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import Model.Product;
 import org.datacontract.schemas._2004._07.myservice.ArrayOfProductDTO;
+import org.datacontract.schemas._2004._07.myservice.ProductDTO;
 import org.tempuri.IStoreService;
 import org.tempuri.StoreService;
 
@@ -24,13 +25,15 @@ public class ProductForm extends JFrame {
     private JButton RefreshButton;
     private JTextPane buyersList;
     private JComboBox InventoryList;
+    private JLabel UserLabel;
     private JComboBox ProductsList;
     private String gebruiker;
+
     ProductController p = new ProductController();
     CustomerController c = new CustomerController();
 
-    List stockProducts = p.GetAllProducts();
-    List myProducts = p.GetMyInventory(gebruiker);
+    List stockProducts;
+    List myProducts;
 
     public StoreService storeService = new StoreService();
     public IStoreService service =  storeService.getBasicHttpBindingIStoreService();
@@ -38,36 +41,41 @@ public class ProductForm extends JFrame {
 
     public void init(){
         JPanel panel = new JPanel();
-        MoneyLeftField.setText("Saldo is: " + c.getMyMoney(gebruiker));
-
+        LoadProducts();
+        LoadMyInventory();
+        panel.add(ProductsList);
+        panel.add(InventoryList);
+        panel.add(RefreshButton);
+        MoneyLeftField.setText("Saldo is: " + c.getMyMoney(UserLabel.getText()));
+        panel.add(MoneyLeftField);
         this.add(panel);
-
     }
 
     private void LoadProducts(){
+        //stockProducts = p.GetAllProducts();
         ProductsList.removeAllItems();
-        ArrayOfProductDTO aoP = service.getAllProducts();
+        List<Product> aoP = p.GetAllProducts();
 
-        for(int i = 0; i < aoP.getProductDTO().size(); i ++ ) {
-            ProductsList.addItem(aoP.getProductDTO().get(i).getName().toString() + ": "
-                    + aoP.getProductDTO().get(i).getPrice() + " "+  aoP.getProductDTO().get(i).getStock()+ "left");
+        for(int i = 0; i < aoP.size(); i ++ ) {
+            ProductsList.addItem("" + aoP.get(i).getProductName() + ": "
+                    + aoP.get(i).getProductPrice() + " "+  aoP.get(i).getAantal()+ "left");
         }
     }
 
     private void LoadMyInventory(){
+        //myProducts = p.GetMyInventory(UserLabel.getText());
         InventoryList.removeAllItems();
-        ArrayOfProductDTO aoP = service.getMyInventory(gebruiker);
+        List<Product> aoP = p.GetMyInventory(UserLabel.getText());
 
-        for(int i = 0; i < aoP.getProductDTO().size(); i++ ) {
-            ProductsList.addItem(aoP.getProductDTO().get(i).getName().toString() + ": "
-                    + aoP.getProductDTO().get(i).getPrice() + " "+  aoP.getProductDTO().get(i).getStock()+ "You got: ");
+        for(int i = 0; i < aoP.size(); i++ ) {
+            InventoryList.addItem(aoP.get(i).getProductName() + ": "
+                    + aoP.get(i).getProductPrice() + " " + "You got: " + aoP.get(i).getAantal());
         }
     }
     public ProductForm(String username) {
-
-
-        gebruiker = username;
-        this.setVisible(true);
+        UserLabel.setText(username);
+        init();
+        this.setSize(600, 400);
 
 
         RefreshButton.addActionListener(new ActionListener() {
@@ -75,6 +83,7 @@ public class ProductForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 LoadProducts();
                 LoadMyInventory();
+                MoneyLeftField.setText("Saldo is: " + c.getMyMoney(UserLabel.getText()));
             }
         });
         BuyButton.addActionListener(new ActionListener() {
@@ -82,11 +91,13 @@ public class ProductForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String productnaam = InventoryList.getSelectedItem().toString().split(":")[0];
 
-                p.BuyProduct(1, productnaam, gebruiker);
-                MoneyLeftField.setText("Money left: "+ c.getMyMoney(gebruiker));
+                p.BuyProduct(1, productnaam, UserLabel.getText());
+                MoneyLeftField.setText("Money left: "+ c.getMyMoney(UserLabel.getText()));
                 LoadProducts();
                 LoadMyInventory();
             }
         });
+
+        this.setVisible(true);
     }
 }

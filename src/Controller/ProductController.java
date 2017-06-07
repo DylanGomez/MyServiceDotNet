@@ -21,9 +21,9 @@ public class ProductController {
         List<Product> models = new ArrayList<Product>();
         ArrayOfProductDTO products = service.getAllProducts();
 
-        for (int i = 0; i < products.getProductDTO().size(); i ++)
+        for (int i = 0; i < products.getProductDTO().size(); i++)
         {
-            models.add(new Product(products.getProductDTO().get(i).getName().toString(), products.getProductDTO().get(i).getPrice(), products.getProductDTO().get(i).getStock()));
+            models.add(new Product(products.getProductDTO().get(i).getName().getValue(), products.getProductDTO().get(i).getPrice(), products.getProductDTO().get(i).getStock()));
         }
         return models;
     }
@@ -35,8 +35,7 @@ public class ProductController {
         ArrayOfProductDTO products = service.getMyInventory(s);
         for (int i = 0; i < products.getProductDTO().size(); i++)
         {
-            models.add(new Product(products.getProductDTO().get(i).getName().toString(), products.getProductDTO().get(i).getPrice(), products.getProductDTO().get(i).getStock()));
-
+            models.add(new Product(products.getProductDTO().get(i).getName().getValue(), products.getProductDTO().get(i).getPrice(), products.getProductDTO().get(i).getStock()));
         }
         return models;
     }
