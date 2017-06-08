@@ -27,6 +27,7 @@ public class ProductForm extends JFrame {
     private JComboBox InventoryList;
     private JLabel UserLabel;
     private JComboBox ProductsList;
+    private JTabbedPane ProductFrame;
     private String gebruiker;
 
     ProductController p = new ProductController();
@@ -43,9 +44,10 @@ public class ProductForm extends JFrame {
         JPanel panel = new JPanel();
         LoadProducts();
         LoadMyInventory();
-        panel.add(ProductsList);
-        panel.add(InventoryList);
-        panel.add(RefreshButton);
+//        panel.add(ProductsList);
+//        panel.add(InventoryList);
+//        panel.add(RefreshButton);
+        panel.add(ProductFrame);
         MoneyLeftField.setText("Saldo is: " + c.getMyMoney(UserLabel.getText()));
         panel.add(MoneyLeftField);
         this.add(panel);
